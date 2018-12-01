@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "531372942053",
+    "firebase_url": "https://xenon-point-221214.firebaseio.com",
+    "project_id": "xenon-point-221214",
+    "storage_bucket": "xenon-point-221214.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531372942053:android:55588e10e0cb38c4",
+        "android_client_info": {
+          "package_name": "com.example.chqns022.androidassignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531372942053-2qsafbg5pt869msgjva46mtcs8fk55mg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-iEQkkAQic1fxKy7I6Noxn28Oc3HJxPM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
