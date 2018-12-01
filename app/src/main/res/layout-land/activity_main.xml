@@ -117,7 +117,7 @@
         android:layout_width="101dp"
         android:layout_height="41dp"
         android:layout_alignStart="@id/progressBar"
-
+        android:layout_alignLeft="@id/progressBar"
 
         android:layout_marginStart="74dp"
         android:layout_marginLeft="-68dp"

@@ -299,7 +299,7 @@ public class FirebaseDB {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot doc : task.getResult()){
-                                final Favourite fav = doc.toObject(Favourite.class);
+                                //final Favourite fav = doc.toObject(Favourite.class);
                                 DocumentReference markerRef = doc.getDocumentReference("marker");
                                 markerRef.get()
                                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -312,7 +312,7 @@ public class FirebaseDB {
                                                     Log.d("markerId", "markerId: " + marker.getId());
                                                     if(marker.getId().equals(id)){
                                                         isFav.add(true);
-                                                        MarkerFragment.setCurFavourite(fav);
+                                                        //MarkerFragment.setCurFavourite(fav);
                                                         Log.d("markerId","isFav(0): " + isFav.get(0));
                                                     }
                                                 }
