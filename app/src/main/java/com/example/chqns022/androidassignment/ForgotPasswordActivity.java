@@ -28,7 +28,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private EditText emailAddress;
     private Button resetPassword;
     private TextView backToLogin;
-    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,9 +39,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         resetPassword = findViewById(R.id.resetPassword);
         backToLogin = findViewById(R.id.backToLogin);
 
-        initProgressBar();      // Progress Bar Initiation
-        init();                 // Main Function Initiation
-        hideSoftKeyboard();     // Hide Keyboard
+        init();
+        hideSoftKeyboard();
+
     }
 
     private void init()
@@ -61,7 +60,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                 if (emailValid)
                 {
-                    // Dialog prompt to confirm password reset
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(ForgotPasswordActivity.this, R.style.Theme_AppCompat_Light_Dialog));
 
                     builder.setTitle(getResources().getString(R.string.title_activity_reset_password));
@@ -87,11 +86,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
+
             }
 
         });
 
-        // Redirect to login screen if "Back To Login" is clicked
         backToLogin.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -106,7 +105,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
 
     private void sendResetPasswordEmail(String email){
-        FirebaseDB firebaseAuth = new MainActivity().getFirebaseDB();
+        FirebaseDB firebaseAuth = new FirebaseDB();
         firebaseAuth.sendForgotPasswordEmail(email, ForgotPasswordActivity.this);
     }
 
@@ -143,38 +142,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         finish();
     }
 
-
-    private void createToast(String s)
-    {
-        Toast.makeText(ForgotPasswordActivity.this, s, Toast.LENGTH_SHORT).show();
-    }
-
     // Check if string is empty
     private boolean isEmpty(String string)
     {
         return string.equals("");
-    }
-
-    // Progress Bar made visible
-    private void showProgressBar()
-    {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    // Progress Bar made invisible
-    private void hideProgressBar()
-    {
-        if(progressBar.getVisibility() == View.VISIBLE)
-        {
-            progressBar.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    // Initiate progress bar
-    private void initProgressBar()
-    {
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
     }
 
     // Hide keyboard

@@ -19,7 +19,6 @@ public class RegisterActivity extends AppCompatActivity {
     //Widgets
     private TextView loginText;
     private EditText email, password, confirmPassword;
-    private ProgressBar progressBar;
     private Button register;
     private String emailStr, passwordStr, confirmPasswordStr;
 
@@ -35,7 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
         loginText = findViewById(R.id.loginForRegistration);
         register = findViewById(R.id.registerButtonr);
 
-        initProgressBar();
         init();
 
         hideSoftKeyboard();
@@ -60,7 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
                 if (inputsValid) {
                     Log.d(TAG, "Saving details to database...");
 
-                    showProgressBar();
                     registerUser(emailStr, passwordStr);
                 }
             }
@@ -162,20 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
     }
 
-    private void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
 
-    private void hideProgressBar() {
-        if (progressBar.getVisibility() == View.VISIBLE) {
-            progressBar.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    private void initProgressBar() {
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
-    }
 
 
     private void hideSoftKeyboard() {

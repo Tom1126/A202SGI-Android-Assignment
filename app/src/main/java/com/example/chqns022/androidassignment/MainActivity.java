@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -42,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
         Paper.init(this);
 
-
         String lang = Paper.book().read("language");
+        if(!lang.equals("zh")) lang = "en";
 
-        if(lang.equals("zh")){
-            Configuration configuration = new Configuration();
-            configuration.locale = new Locale(lang);
-            getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
-        }
+
+        Configuration configuration = new Configuration();
+        configuration.locale = new Locale(lang);
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+
 
         forgotPasswordText = findViewById(R.id.forgotPasswordLogin);
         userName = findViewById(R.id.userNameLogin);
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.loginButton);
         registerText = findViewById(R.id.register_text);
 
-        setKnowns();
+        setRememberMeKnowns();
 
         forgotPasswordText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,28 +85,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateText(String email, String password, boolean isChecked){
+    private void updateTextboxValue(String email, String password, boolean isChecked){
         this.userName.setText(email);
         this.password.setText(password);
         this.rememberPassword.setChecked(isChecked);
     }
 
-    private void setKnowns()
+    private void setRememberMeKnowns()
     {
 
         final String gotRememberMe = "" + Paper.book().read("gotRememberMe");
         final String rememberMeEmail = "" + Paper.book().read("rememberMeEmail");
         final String rememberMePassword = "" + Paper.book().read("rememberMePassword");
 
-        Log.d("gotRememberMe", gotRememberMe + "");
 
         if(gotRememberMe.equals("true")){
-            updateText(rememberMeEmail, rememberMePassword, true);
+            updateTextboxValue(rememberMeEmail, rememberMePassword, true);
         }
 
         else{
             Paper.book().write("gotRememberMe", "false");
-            updateText(rememberMeEmail, rememberMePassword, false);
+            updateTextboxValue(rememberMeEmail, rememberMePassword, false);
         }
 
 
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
                 checked = rememberPassword.isChecked() ? "true" : "false";
 
-                updateKnowns(userName.getText().toString(), password.getText().toString(), checked);
+                updateRememberMeKnowns(userName.getText().toString(), password.getText().toString(), checked);
 
                 if(!isEmpty(userName.getText().toString())
                         && !isEmpty(password.getText().toString()))
@@ -169,19 +167,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Update details of remember password in local file
-    private void updateKnowns(String email, String password, String checked)
+    private void updateRememberMeKnowns(String email, String password, String checked)
     {
 
         Paper.book().write("gotRememberMe", checked);
         Paper.book().write("rememberMeEmail", email);
         Paper.book().write("rememberMePassword", password);
 
-    }
-
-    public static void createToast(Context context, String s)
-    {
-        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 
     private boolean isEmpty(String string)

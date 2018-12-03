@@ -39,7 +39,6 @@ import io.paperdb.Paper;
 public class HomeMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Button mapBtn, favBtn, logoutBtn;
-    private FloatingActionButton fab;
     private Fragment mFragment;
     private final CharSequence[] items = { "English / 英文", "Chinese / 中文"};
     private String selection;
@@ -56,15 +55,6 @@ public class HomeMenu extends AppCompatActivity implements NavigationView.OnNavi
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

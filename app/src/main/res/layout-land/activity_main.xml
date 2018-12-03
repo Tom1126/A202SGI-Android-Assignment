@@ -121,7 +121,7 @@
 
         android:layout_marginStart="74dp"
         android:layout_marginLeft="-68dp"
-        android:layout_marginTop="87dp"
+        android:layout_marginTop="80dp"
         android:clickable="true"
         android:ellipsize="end"
         android:focusable="true"

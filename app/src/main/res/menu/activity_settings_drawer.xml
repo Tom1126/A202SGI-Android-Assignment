@@ -6,12 +6,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/language_setting"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/ic_baseline_language_24px"
             android:title="@string/change_language"
             />
         <item
             android:id="@+id/logout_setting"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/ic_baseline_power_settings_new_24px"
             android:title="@string/logout_setting"
             />
     </group>

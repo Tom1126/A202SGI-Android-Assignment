@@ -67,7 +67,13 @@ public class NewAppWidget extends AppWidgetProvider {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
         Intent intent = new Intent(context, MarkerActivity.class);
-        MarkerFragment.setCurMarker(getCurFavList().get(0).getMarker());
+
+        if(getCurFavList().size() != 0) {
+
+            MarkerFragment.setCurMarker(getCurFavList().get(0).getMarker());
+
+        }
+
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent,0);
 
         views.setOnClickPendingIntent(R.id.widget, pendingIntent);

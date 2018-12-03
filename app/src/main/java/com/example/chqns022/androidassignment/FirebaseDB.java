@@ -107,13 +107,13 @@ public class FirebaseDB {
                             currentUser.setEmail(user.getEmail());
                             currentUser.setPassword(user.getPassword());
 
-                            MainActivity.createToast(context, "Sign In Successfully");
+                            NotificationsControl.createToast(context, "Sign In Successfully");
                             Intent intent = new Intent(context, HomeMenu.class);
                             context.startActivity(intent);
                         }
                         else{
                             Log.d("FirebaseDB", "signInWithEmail: failure" + task.getException());
-                            MainActivity.createToast(context, "Sign In Failed: " + task.getException());
+                            NotificationsControl.createToast(context, "Sign In Failed: " + task.getException());
                         }
                     }
                 });
@@ -279,9 +279,11 @@ public class FirebaseDB {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Log.d("Update favourite", "Successful");
+                            NotificationsControl.createToast(context,"Update favourite successfully");
                         }
                         else{
                             Log.d("Update favourite", "Unsuccessful");
+                            NotificationsControl.createToast(context, "Update favourites failed");
                         }
                     }
                 });

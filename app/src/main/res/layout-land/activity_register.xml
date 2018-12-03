@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -24,12 +24,10 @@
             android:id="@+id/emailRegister"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:drawablePadding="13dp"
             android:hint="@string/email_address"
             android:inputType="textEmailAddress"
-            android:padding="10dp"
             android:textSize="20sp" />
 
 
@@ -37,12 +35,10 @@
             android:id="@+id/passwordRegister"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/emailRegister"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:drawablePadding="13dp"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:padding="10dp"
             android:textSize="20sp" />
 
 
@@ -50,12 +46,10 @@
             android:id="@+id/confirmPasswordRegister"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordRegister"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:drawablePadding="13dp"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:padding="10dp"
             android:textSize="20sp" />
 
 
@@ -63,7 +57,10 @@
             android:id="@+id/loginForRegistration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="false"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="16dp"
             android:text="@string/already_a_member_login_here"
             android:textAlignment="center"
             android:textSize="17sp" />
@@ -73,13 +70,12 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
 
+            android:layout_below="@+id/confirmPasswordRegister"
             android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="4dp"
             android:text="Register"
             android:visibility="visible" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ProgressBar
         android:layout_width="50dp"

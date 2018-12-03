@@ -30,6 +30,14 @@ public class FavouriteListFragment extends Fragment {
     private FavouriteAdapter mFavouriteAdapter;
     private static Favourite curSetAtHomeScreenFav = new Favourite();
     private static ArrayList<Favourite> favourites = new ArrayList<>();
+    private FirebaseDB db = new FirebaseDB();
+
+
+    public static void setAllMarkerHomeScreenFalse(){
+        for(int i = 0; i < favourites.size(); i++){
+            favourites.get(i).setSetAtHomeScreen(false);
+        }
+    }
 
     public static Favourite getCurSetAtHomeScreenFav() {
         return curSetAtHomeScreenFav;
@@ -107,13 +115,13 @@ public class FavouriteListFragment extends Fragment {
                     MarkerFragment.setCurPos(mPos);
                     MarkerFragment.setCurMarker(favourites.get(mPos).getMarker());
 
-                    FirebaseDB db = new FirebaseDB();
                     db.checkIfMarkerisFavourite(MarkerFragment.getCurMarker(), FirebaseDB.getCurrentUser().getEmail(), MarkerFragment.getIsMarkerFavourite(), getActivity());
 
                     Intent intent = new Intent(v.getContext(), MarkerActivity.class);
                     startActivity(intent);
 
                 }
+
             });
 
             mCheckBox = itemView.findViewById(R.id.favourite_check_box);
@@ -134,15 +142,19 @@ public class FavouriteListFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    String toast_msg =  getCurSetAtHomeScreenFav() == fav ? "Favourite already set at home screen" : "Setting favourite to home screen";
+                    String toast_msg =  fav.isSetAtHomeScreen() ? "Favourite already set at home screen" : "Setting favourite to home screen";
                     Toast.makeText(v.getContext(),
                             toast_msg,
                             Toast.LENGTH_SHORT).show();
 
-                    if(!fav.isSetAtHomeScreen()){
-                        setCurSetAtHomeScreenFav(fav);
+                    if(!(fav.isSetAtHomeScreen())){
+                        setAllMarkerHomeScreenFalse();
+                        fav.setSetAtHomeScreen(true);
+
                         ArrayList<Favourite> curFav = new ArrayList<>();
                         curFav.add(fav);
+
+                        //db.updateMarkerHomeScreenStatus(getCurSetAtHomeScreenFav(), true, getActivity());
                         NewAppWidget.setCurFavList(curFav);
 
                         //Intent intent = new Intent(getActivity(), NewAppWidget.class);

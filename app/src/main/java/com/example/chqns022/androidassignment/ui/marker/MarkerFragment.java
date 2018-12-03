@@ -40,7 +40,7 @@ public class MarkerFragment extends Fragment {
 
     private TextView title, latlngTitle, latlngText, activitiesTitle, helptitle;
     private RecyclerView helpListRecyclerView, activitiesListRecyclerView;
-    private MarkerViewModel mViewModel;
+
     private RatingBar mRatingBar;
     private Button favButton;
 
@@ -156,6 +156,7 @@ public class MarkerFragment extends Fragment {
 
         Log.d("isNotFromBoth", "yes");
 
+        Log.d("Marker MarkerFragment", "" + curMarker);
         Log.d("Marker MarkerFragment", "" + getCurPos());
         Log.d("Marker MarkerFragment", "" + getPreviousPage());
         Log.d("Marker MarkerFragment", "" + curMarker.getTitle());
@@ -163,15 +164,22 @@ public class MarkerFragment extends Fragment {
         Log.d("Marker MarkerFragment", "" + curMarker.getLocation());
 
 
-        title.setText(curMarker.getTitle());
-        latlngText.setText(" [ " + curMarker.getLocation().getLatitude() + ", " + curMarker.getLocation().getLongitude() + "]");
+        title.setText(curMarker.getTitle() == null ?  "Title unavailable" : curMarker.getTitle());
+        latlngText.setText(curMarker.getLocation() == null ? "Location unavailable" :  " [ " + curMarker.getLocation().getLatitude() + ", " + curMarker.getLocation().getLongitude() + "]");
 
         mRatingBar.setMax(5);
         mRatingBar.setNumStars(5);
-        mRatingBar.setRating(curMarker.getRating());
+        mRatingBar.setRating(curMarker == null ? 0 :  curMarker.getRating());
 
-        if(!curMarker.isHelpNeeded()) helptitle.setText("Help currently not needed");
-        if(curMarker.getActivities().size() == 0) activitiesTitle.setText("Activities currently unavailable");
+        if(curMarker != null){
+            if(!curMarker.isHelpNeeded()) helptitle.setText("Help currently not needed");
+            if(curMarker.getActivities().size() == 0) activitiesTitle.setText("Activities currently unavailable");
+            if(curMarker.getLocation() == null) favButton.setEnabled(false);
+        }
+
+        else{
+            favButton.setEnabled(true);
+        }
 
         helpListRecyclerView = view.findViewById(R.id.help_list_section);
 
@@ -204,8 +212,6 @@ public class MarkerFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(MarkerViewModel.class);
-        // TODO: Use the ViewModel
 
     }
 
