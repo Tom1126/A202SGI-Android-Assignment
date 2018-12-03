@@ -41,7 +41,7 @@ public class NewAppWidget extends AppWidgetProvider {
         Log.d("list size", getCurFavList().size() + "");
         if(getCurFavList().size() != 0){
             Log.d("pass 0 size", "yes");
-            if(getCurFavList().get(0) != null){
+            if(getCurFavList().get(0).getMarker().getLocation() != null){
                 gotLocation = true;
             }
         }
@@ -49,6 +49,7 @@ public class NewAppWidget extends AppWidgetProvider {
         String text = curFavList.size() == 0 ? "Title unavailable" : "" + curFavList.get(0).getMarker().getTitle();
         String locationString =  gotLocation ? "[ " + curFavList.get(0).getMarker().getLocation().getLatitude() + ", " + curFavList.get(0).getMarker().getLocation().getLongitude() +"]" : "Location unavailable";
 
+        Log.d("locationString", "" + locationString);
         views.setTextViewText(R.id.appwidget_text, text);
         views.setTextViewText(R.id.appwidget_location, locationString);
 

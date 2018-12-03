@@ -38,6 +38,6 @@
     <string name="map">地图</string>
     <string name="favourites">收藏</string>
     <string name="logout">退出</string>
-    <string name="logout_setting">出</string>
+    <string name="logout_setting">退出</string>
     <string name="change_language_setting">更换语言</string>
 </resources>

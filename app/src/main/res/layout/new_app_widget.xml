@@ -20,7 +20,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="41dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="-60dp"
         android:background="#FFF"
         android:contentDescription="@string/appwidget_text"
         android:foregroundGravity="center"

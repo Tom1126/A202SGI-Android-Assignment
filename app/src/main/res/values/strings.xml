@@ -3,7 +3,7 @@
     <string name="pref_remember_me">Remember Me</string>
     <string name="pref_username">Username</string>
     <string name="pref_password">Password</string>
-    <string name="username_error">Username is requires</string>
+    <string name="username_error">Username is required</string>
     <string name="password_required_error">Password is required</string>
     <string name="remember_me">Remember Me</string>
     <string name="login">Login</string>

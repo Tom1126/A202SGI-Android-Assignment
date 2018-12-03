@@ -40,10 +40,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Paper.init(this);
+        String lang = "";
+        //lang = Paper.book().read("language") == null ? "en" : (String) Paper.book().read("language");
+        //if(!lang.equals("zh") || lang.equals("")) lang = "en";
+        if(Paper.book().read("language") == null){
+            lang = "en";
 
-        String lang = Paper.book().read("language");
-        if(!lang.equals("zh")) lang = "en";
+        }
 
+        else if(Paper.book().read("language").equals("en")){
+          lang = "en";
+        }
+
+        else{
+          lang = "zh";
+        }
+
+        Paper.book().write("language", lang);
 
         Configuration configuration = new Configuration();
         configuration.locale = new Locale(lang);
