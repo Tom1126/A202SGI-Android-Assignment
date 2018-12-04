@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:layout_centerInParent="true"
-    android:layout_gravity="center"
-    android:background="#fff"
-    android:foregroundGravity="center"
-    android:gravity="center">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,6 +23,14 @@
 
             android:textSize="45sp" />
 
+        <TextView
+            android:id="@+id/email_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_centerInParent="true"
+            android:text="@string/email_address"
+            android:textSize="24sp" />
         <EditText
             android:id="@+id/userNameLogin"
             style="@android:style/Widget.Holo.Light.EditText"
@@ -51,6 +51,15 @@
             android:textSize="20sp" />
 
 
+        <TextView
+            android:id="@+id/password_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userNameLogin"
+            android:layout_centerInParent="true"
+            android:text="@string/password"
+            android:textSize="24sp" />
+
         <EditText
             android:id="@+id/passwordLogin"
             style="@android:style/Widget.Holo.Light.EditText"
@@ -61,7 +70,7 @@
 
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
 
 
             android:drawablePadding="13dp"
@@ -89,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rememberPasswordLogin"
             android:layout_marginStart="60dp"
-
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_toRightOf="@+id/register_text"
@@ -121,7 +130,7 @@
             android:text="@string/register_text" />
 
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/loginButton"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -136,12 +145,6 @@
             android:visibility="visible" />
 
     </RelativeLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerInParent="true" />
 
 
 </RelativeLayout>

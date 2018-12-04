@@ -1,18 +1,10 @@
 package com.example.chqns022.androidassignment;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,18 +12,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.example.chqns022.androidassignment.ui.marker.MarkerFragment;
-
-import java.util.ArrayList;
 import java.util.Locale;
 
 import io.paperdb.Paper;
@@ -88,7 +74,7 @@ public class HomeMenu extends AppCompatActivity implements NavigationView.OnNavi
         //NotificationsControl.sendNotifications(this, "My Notifications", "Hello World");
 
         FirebaseDB db = new FirebaseDB();
-        db.getFavouritesFromDB2(FavouriteListFragment.getFavourites(), FirebaseDB.getCurrentUser().getEmail(), this);
+        db.getFavouritesFromDB(FavouriteListFragment.getFavourites(), FirebaseDB.getCurrentUser().getEmail(), this);
         db.getMarkersFromDB(MapsFragment.getMarkerList(), this);
         //db.getMarkerFromDB(MarkerFragment.getCurMarker(), this);
     }
@@ -212,26 +198,25 @@ public class HomeMenu extends AppCompatActivity implements NavigationView.OnNavi
         return true;
     }
 
+    /**
+     * Method to log out
+     */
     private void logOut() {
         FirebaseDB db = new FirebaseDB();
         db.userSignOut(this);
     }
 
+    /**
+     * Method to change app language
+     * @param lang App language
+     * output: void
+     */
     private void updateViewLanguage(String lang){
+
         if(!lang.equals("zh") && !lang.equals("en")) lang = "en";
         Configuration configuration = new Configuration();
         configuration.locale = new Locale(lang);
         getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
-
-
-        /*
-        Locale locale = new Locale(lang);
-        Resources res = getBaseContext().getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = locale;
-        res.updateConfiguration(conf, dm);
-        */
 
     }
 

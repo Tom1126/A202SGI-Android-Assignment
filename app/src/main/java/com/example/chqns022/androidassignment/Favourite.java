@@ -3,6 +3,8 @@ package com.example.chqns022.androidassignment;
 import com.google.firebase.firestore.DocumentReference;
 
 public class Favourite {
+
+
     private Marker mMarker = new Marker();
     private String userEmail = "";
     private boolean setAtHomeScreen = false;

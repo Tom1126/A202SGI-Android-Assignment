@@ -164,7 +164,7 @@ public class FirebaseDB {
         return mUser;
     }
 
-    public void getFavouritesFromDB2(final ArrayList<Favourite> favourites, String email, final Context context){
+    public void getFavouritesFromDB(final ArrayList<Favourite> favourites, String email, final Context context){
         favourites.clear();
 
         db.collection("favourites")
@@ -213,81 +213,7 @@ public class FirebaseDB {
                 });
     }
 
-    public void getFavouritesFromDB(final ArrayList<Favourite> favouritesList, final String email, final Context context){
 
-        db.collection("favourites")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (final QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("FirebaseDB Favourite", document.getId() + " => " + document.getData());
-
-                                if(document.getString("userEmail").equals(email)){
-
-                                    DocumentReference doc = document.getDocumentReference("marker");
-
-                                    doc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            Log.d("MarkerDoc", documentSnapshot.getId() + " => " + documentSnapshot.getData());
-                                            Marker marker = documentSnapshot.toObject(Marker.class);
-                                            marker.setId(documentSnapshot.getId());
-                                            Log.d("marker MarkerDoc", marker.getTitle());
-                                            Log.d("marker MarkerDoc", "" + marker.getLocation());
-                                            Log.d("marker MarkerDoc", "" + marker.getRating());
-                                            Log.d("marker MarkerDoc", "" + marker.isHelpNeeded());
-                                            Log.d("marker MarkerDoc", "" + marker.getActivities().get(0));
-                                            //newFavourite.setMarker(marker);
-                                            //favourites.add(newFavourite);
-
-                                            Favourite newFavourite = new Favourite();
-                                            newFavourite.setId(document.getId());
-                                            newFavourite.setMarker(marker);
-                                            newFavourite.setUserEmail(email);
-
-                                            favouritesList.add(newFavourite);
-                                        }
-                                    });
-
-                                    /*Favourite favourite = new Favourite();
-                                    favourite.setMarker(newMarker);
-                                    favourite.setUserEmail(email);
-
-                                    favouritesList.add(favourite);
-                                    */
-                                }
-
-                            }
-                        } else {
-                            Log.w("FirebaseDB"
-                                    , "Error getting documents.", task.getException());
-                            NotificationsControl.sendNotifications(context, "Getting Favourites Error", "Oops, something went wrong. Please try again later.");
-                        }
-                    }
-                });
-
-    }
-
-    public void updateMarkerHomeScreenStatus(final Favourite favourite, final boolean isAtHomeScree, final Context context){
-        db.collection("favourites")
-                .document("" + favourite.getId())
-                .update("setAtHomeScreen", isAtHomeScree)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Log.d("Update favourite", "Successful");
-                            NotificationsControl.createToast(context,"Update favourite successfully");
-                        }
-                        else{
-                            Log.d("Update favourite", "Unsuccessful");
-                            NotificationsControl.createToast(context, "Update favourites failed");
-                        }
-                    }
-                });
-    }
 
     public void checkIfMarkerisFavourite(final Marker marker, String email, final ArrayList<Boolean> isFav, final Context context){
         isFav.clear();

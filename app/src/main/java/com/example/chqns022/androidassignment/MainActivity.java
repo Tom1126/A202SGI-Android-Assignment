@@ -20,6 +20,9 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Variable for database operations
+     */
     private FirebaseDB firebaseDB = new FirebaseDB();
 
     //Widgets
@@ -29,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox rememberPassword;
     private ProgressBar progressBar;
 
+    /**
+     * Method to get firebasedb object
+     * @return FirebaseDB
+     */
     public FirebaseDB getFirebaseDB(){
         return firebaseDB;
     }
@@ -39,10 +46,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Paper.init(this);
+        Paper.init(this); //Initialize paper
+
+        //Set language according to language key from Paper
         String lang = "";
-        //lang = Paper.book().read("language") == null ? "en" : (String) Paper.book().read("language");
-        //if(!lang.equals("zh") || lang.equals("")) lang = "en";
+
         if(Paper.book().read("language") == null){
             lang = "en";
 
@@ -56,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
           lang = "zh";
         }
 
+        //Update language in Paper
         Paper.book().write("language", lang);
 
+        //Change app language
         Configuration configuration = new Configuration();
         configuration.locale = new Locale(lang);
         getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
@@ -99,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateTextboxValue(String email, String password, boolean isChecked){
-        this.userName.setText(email);
-        this.password.setText(password);
+        this.userName.setText(isChecked ? email : "");
+        this.password.setText(isChecked ? password : "");
         this.rememberPassword.setChecked(isChecked);
     }
 

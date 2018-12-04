@@ -17,63 +17,100 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/registration"
+            android:textSize="45sp"
             android:textAlignment="center"
-            android:textSize="45sp" />
+            />
+
+        <TextView
+            android:id="@+id/email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:layout_marginLeft="35dp"
+            android:text="@string/email_address"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/emailRegister"
-            android:layout_width="300dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView1"
+            android:layout_below="@+id/email_text"
             android:layout_gravity="center"
-            android:hint="@string/email_address"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="13dp"
             android:inputType="textEmailAddress"
-            android:textSize="20sp" />
-
-
-        <EditText
-            android:id="@+id/passwordRegister"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/emailRegister"
-            android:layout_gravity="center"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:textSize="20sp" />
-
-
-        <EditText
-            android:id="@+id/confirmPasswordRegister"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/passwordRegister"
-            android:layout_gravity="center"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"
+            android:padding="10dp"
             android:textSize="20sp" />
 
 
         <TextView
-            android:id="@+id/loginForRegistration"
+            android:id="@+id/password_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/emailRegister"
+            android:layout_marginLeft="35dp"
+            android:text="@string/password"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/passwordRegister"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password_text"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="13dp"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/confirm_password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="false"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="35dp"
+            android:text="@string/confirm_password"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/confirmPasswordRegister"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/confirm_password_text"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="13dp"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textSize="20sp" />
+
+
+        <Button
+            android:id="@+id/registerButtonr"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/confirmPasswordRegister"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/register_text"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/loginForRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/registerButtonr"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="3dp"
             android:text="@string/already_a_member_login_here"
             android:textAlignment="center"
             android:textSize="17sp" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/registerButtonr"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@+id/confirmPasswordRegister"
-            android:layout_gravity="center"
-            android:text="Register"
-            android:visibility="visible" />
 
     </RelativeLayout>
 

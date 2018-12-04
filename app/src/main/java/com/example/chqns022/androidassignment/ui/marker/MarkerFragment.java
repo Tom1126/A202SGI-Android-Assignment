@@ -92,21 +92,8 @@ public class MarkerFragment extends Fragment {
         curMarker.setId(marker.getId());
     }
 
-    public static void setHelpList(ArrayList<String> helpListCopy){
-        helpList.clear();
-        helpList.addAll(helpListCopy);
-    }
-
-    public static ArrayList<String> getHelpList(){
-        return helpList;
-    }
-
     public static void setCurFavourite(Favourite newFavourite){
         curFavourite.setMarker(newFavourite.getMarker());
-    }
-
-    public static Favourite getCurFavourite(){
-        return curFavourite;
     }
 
     public static void setPreviousPage(int page){
@@ -115,10 +102,6 @@ public class MarkerFragment extends Fragment {
 
     public static int getPreviousPage(){
         return previousPage;
-    }
-
-    public static MarkerFragment newInstance() {
-        return new MarkerFragment();
     }
 
     @Override

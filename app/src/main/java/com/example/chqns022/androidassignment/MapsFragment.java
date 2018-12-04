@@ -74,6 +74,7 @@ public class MapsFragment extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         mMap.setTrafficEnabled(true);
+        mMap.setBuildingsEnabled(true);
 
         mMap.setOnMarkerClickListener(this);
         mMap.setOnInfoWindowClickListener(this);
@@ -82,19 +83,20 @@ public class MapsFragment extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(markerList.get(i).getLocation().getLatitude(), markerList.get(i).getLocation().getLongitude()))
                     .title(markerList.get(i).getTitle())
+                    .flat(true)
                     .snippet("" + i)
             );
         }
 
         if(markerList.size() == 0) NotificationsControl.sendNotifications(this, "Getting markers error", "Oops, something went wrong. Please try again later.");
 
-       // mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
 
         int i = Integer.parseInt(marker.getSnippet());
+        marker.setSnippet("");
 
         MarkerFragment.setPreviousPage(1);
         MarkerFragment.setCurPos(i);
@@ -113,7 +115,7 @@ public class MapsFragment extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        //int pos = Integer.parseInt(marker.getSnippet());
+
         marker.setSnippet("" + marker.getPosition());
 
         Intent intent = new Intent(MapsFragment.this, MarkerActivity.class);
@@ -122,37 +124,4 @@ public class MapsFragment extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
-
-        private final View contentsView;
-
-        CustomInfoWindowAdapter(){
-            contentsView = getLayoutInflater().inflate(R.layout.marker_fragment, null);
-        }
-
-        @Override
-        public View getInfoWindow(Marker marker) {
-            return null;
-        }
-
-        @Override
-        public View getInfoContents(Marker marker) {
-
-            /*TextView textView = (TextView) contentsView.findViewById(R.id.title);
-            textView.setText("Hello World");
-
-            TextView snippetView = contentsView.findViewById(R.id.snippet);
-            snippetView.setText(marker.getSnippet());*/
-            return contentsView;
-        }
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(MapsFragment.this, HomeMenu.class);
-        startActivity(intent);
-        finish();
-    }
 }
