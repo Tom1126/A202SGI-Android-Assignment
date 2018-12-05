@@ -174,7 +174,15 @@ public class MarkerFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                boolean isFav = curMarker.isHelpNeeded();
+                Log.d("curMarker", "" + curMarker.getId());
+                boolean isFav;
+                if(getIsMarkerFavourite().size() == 0){
+                    isFav = false;
+                }
+                else{
+                    isFav = getIsMarkerFavourite().get(0);
+                }
+                
                 Log.d("isFav", "" + isFav);
                 String toast_msg = isFav ? "Marker already added as favourite" : "Adding to favourite...";
                 Toast.makeText(getContext(),

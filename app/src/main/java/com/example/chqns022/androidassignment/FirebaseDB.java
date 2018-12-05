@@ -235,25 +235,29 @@ public class FirebaseDB {
                                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                                 if(task.isSuccessful()){
                                                     DocumentSnapshot doc2 = task.getResult();
+                                                    //Marker curMarker = doc2.toObject(Marker.class);
                                                     String id = doc2.getId();
                                                     Log.d("markerId", "id: " + id);
                                                     Log.d("markerId", "markerId: " + marker.getId());
                                                     if(marker.getId().equals(id)){
+                                                        Log.d("Inside equals id", "yes");
                                                         isFav.add(true);
-                                                        //MarkerFragment.setCurFavourite(fav);
+                                                        //MarkerFragment.setCurMarker(curMarker);
                                                         Log.d("markerId","isFav(0): " + isFav.get(0));
                                                     }
                                                 }
 
                                             }
                                         });
-                                if(isFav.size() != 0){
-                                    if(isFav.get(0)) break;
-                                }
+
 
                             }
 
-                            isFav.add(false);
+                            if(isFav.size() != 0){
+                                if(!isFav.get(0)) {
+                                    isFav.add(false);
+                                }
+                            }
 
                         }
 

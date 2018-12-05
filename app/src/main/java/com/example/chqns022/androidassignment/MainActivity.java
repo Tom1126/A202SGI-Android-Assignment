@@ -100,11 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        initProgressBar();
         init();
-
-
 
     }
 
@@ -153,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
                         && !isEmpty(password.getText().toString()))
                 {
 
-                    showProgressBar();
                     authenticateUser(userName.getText().toString(),password.getText().toString());
 
                 }
@@ -186,8 +181,6 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseDB.signInUser(curUser, MainActivity.this);
 
-        hideProgressBar();
-
     }
 
     private void updateRememberMeKnowns(String email, String password, String checked)
@@ -203,26 +196,6 @@ public class MainActivity extends AppCompatActivity {
     {
         return string.equals("");
     }
-
-    private void showProgressBar()
-    {
-        progressBar.setVisibility(View.VISIBLE);
-
-    }
-
-    private void hideProgressBar()
-    {
-
-        progressBar.setVisibility(progressBar.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
-
-    }
-
-    private void initProgressBar()
-    {
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
-    }
-
 
     private void hideSoftKeyboard()
     {
